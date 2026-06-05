@@ -1,0 +1,62 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package modelo {
+    class Casilla {
+        - esMina: boolean
+        - estaRevelada: boolean
+        - tieneBandera: boolean
+        - minasAlrededor: int
+        + Casilla()
+        + isEsMina(): boolean
+        + isEstaRevelada(): boolean
+    }
+    
+    class Tablero {
+        - casillas: Casilla[][]
+        + Tablero()
+        + colocarMinas()
+        + calcularMinasAlrededor()
+        + descubrirCasilla(f: int, c: int): boolean
+        + verificarVictoria(): boolean
+    }
+}
+
+package vista {
+    class VistaConsola {
+        + mostrarTablero(tablero: Tablero, mostrarMinas: boolean)
+        + mostrarMensaje(mensaje: String)
+    }
+}
+
+package controlador {
+    class JuegoControlador {
+        - tablero: Tablero
+        - vista: VistaConsola
+        + JuegoControlador(tablero: Tablero, vista: VistaConsola)
+        + iniciarJuego()
+    }
+}
+
+package servicio {
+    class ArchivoServicio {
+        - {static} NOMBRE_ARCHIVO: String
+        + guardarPartida(tablero: Tablero)
+        + cargarPartida(): Tablero
+    }
+}
+
+package excepcion {
+    class CasillaYaDescubiertaException {
+        + CasillaYaDescubiertaException(mensaje: String)
+    }
+}
+
+' Relaciones de dependencia y asociación (MVC)
+Tablero *-- Casilla : "10x10"
+JuegoControlador --> Tablero : "controla"
+JuegoControlador --> VistaConsola : "actualiza"
+JuegoControlador --> ArchivoServicio : "usa"
+Tablero ..> CasillaYaDescubiertaException : "lanza"
+
+@endum
