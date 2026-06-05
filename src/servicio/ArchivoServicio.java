@@ -1,4 +1,4 @@
-package servicio;
+package servicio;  
 
 import modelo.Tablero;
 import java.io.ObjectOutputStream;
@@ -8,10 +8,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ArchivoServicio {
+	// Servicio desarrollado para el cumplimiento de la Fase 3 persistencia de datos
     // nombre del archivo binario donde se guardará la partida congelada
     private static final String NOMBRE_ARCHIVO = "partida_buscaminas.dat";
 
-   
      //Guarda el objeto Tablero completo en un archivo binario
      
     public void guardarPartida(Tablero tablero) throws IOException {
