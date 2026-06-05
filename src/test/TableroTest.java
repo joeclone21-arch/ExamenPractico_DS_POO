@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TableroTest {
+	// Pruebas unitarias de JUnit (barra verde completada) para la Fase 4
     private Tablero tablero;
 
     @BeforeEach
